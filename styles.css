@@ -1,0 +1,466 @@
+/* Estilos Refinados V3.0 (Asset based styling) */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #000000;
+    margin: 0;
+    overflow: hidden;
+    color: #d1d5db;
+    scroll-behavior: smooth;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #4f46e5, #9333ea);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Base de JS Snap Scroll - Animación hiper suave */
+.snap-container {
+    height: 100vh;
+    width: 100%;
+    transition: transform 0.9s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+.snap-section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+    overflow-y: auto;
+    box-sizing: border-box;
+    /* Eliminamos barras de scroll de cada sección individual */
+    scrollbar-width: none;
+}
+.snap-section::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* ---------------------------------
+   TRELLO SIMULATOR — Layout preciso con posicionamiento absoluto
+   Contenedor base: max-width 560px, height 300px, padding 15px
+   Área interior útil: ~530px de ancho × ~270px de alto
+   3 columnas: ~(530 - 2*10gap) / 3 = ~170px cada una
+   --------------------------------- */
+
+/* Contenedor externo del board */
+.trello-sim {
+    background: rgba(255,255,255,0.02);
+    border-radius: 16px;
+    padding: 14px;
+    border: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Columnas del tablero Trello */
+.trello-col {
+    flex: 1;
+    border-radius: 12px;
+    padding: 10px;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.col-label {
+    font-size: 8px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    margin: 0 0 8px 0;
+    line-height: 1;
+}
+
+/* --- CURSOR --- */
+/* 
+   Recorre el contenedor (max 560px, padding 15px => interior 530px).
+   Columna 1: x 15…185, columna 2: x 195…365, columna 3: x 375…545
+   Posición inicial de la tarjeta ghost: x≈15, y≈40px desde top del contenedor
+   
+   Usamos % relativos al contenedor .trello-sim (position:relative).
+*/
+#cursor {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    z-index: 200;
+    pointer-events: none;
+    animation: cursorMove 10s infinite cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+@keyframes cursorMove {
+    /* Aparece en esquina inferior derecha */
+    0%   { top: 82%; left: 82%; opacity: 0; transform: scale(1); }
+    4%   { opacity: 1; }
+    /* Se mueve hacia la tarjeta en Backlog (col1, ~x:25px, y:42px) */
+    14%  { top: 42px; left: 25px; transform: scale(1); opacity: 1; }
+    /* Clic down */
+    17%  { transform: scale(0.75); }
+    19%  { transform: scale(1.05); }
+    21%  { transform: scale(1); }
+    /* Arrastra la tarjeta hacia Haciendo (col2 center ~x:200px) */
+    38%  { top: 42px; left: 200px; transform: scale(1); }
+    /* Pause en Haciendo */
+    42%  { top: 52px; left: 215px; }
+    /* Espera que cargue */
+    63%  { top: 42px; left: 200px; transform: scale(0.85); }
+    66%  { transform: scale(1.05); }
+    68%  { transform: scale(1); }
+    /* Arrastra a Entregado: baja junto con la tarjeta a top:82px */
+    80%  { top: 87px; left: 385px; }
+    /* Suelta — el cursor llega y se queda encima de la tarjeta en Entregado */
+    84%  { top: 87px; left: 395px; transform: scale(1); opacity: 1; }
+    /* Desaparece */
+    93%  { opacity: 1; }
+    100% { top: 82%; left: 82%; opacity: 0; }
+}
+
+/* --- TARJETA FANTASMA (estática, en Backlog) --- 
+   Desaparece cuando la "fly" arranca
+*/
+#task-ghost {
+    animation: ghostCard 10s infinite step-end;
+}
+
+@keyframes ghostCard {
+    0%, 19%  { opacity: 1; }
+    20%, 100% { opacity: 0; }
+}
+
+/* --- TARJETA VOLADORA ("fly") ---
+   Posicionada absolutamente sobre todo el board.
+   Columna 1 start: left≈15px, top≈40px
+   Columna 2 center: left≈205px
+   Columna 3 center: left≈375px
+*/
+.task-card-fly {
+    position: absolute;
+    top: 40px;
+    left: 15px;
+    width: 155px;
+    background: #4f46e5;
+    border: 1px solid rgba(99,102,241,0.6);
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 150;
+    box-sizing: border-box;
+    box-shadow: 0 8px 24px rgba(79,70,229,0.35);
+    animation: flyCard 10s infinite cubic-bezier(0.45, 0, 0.55, 1);
+    pointer-events: none;
+}
+
+@keyframes flyCard {
+    /* Invisible hasta que el cursor hace clic */
+    0%, 19%  { opacity: 0; left: 15px; top: 40px; transform: none; background: #4f46e5; border-color: rgba(99,102,241,0.6); box-shadow: 0 8px 24px rgba(79,70,229,0.35); }
+    /* Aparece y empieza a moverse a Haciendo — SIN rotación */
+    20%  { opacity: 1; left: 15px; top: 40px; transform: none; }
+    38%  { left: 202px; top: 40px; transform: none; background: rgba(79,70,229,0.25); border-color: rgba(99,102,241,0.4); }
+    /* Queda quieta y PLANA en Haciendo mientras automatiza */
+    40%, 63% { left: 202px; top: 40px; transform: none; background: rgba(79,70,229,0.2); border-color: rgba(99,102,241,0.35); opacity: 1; }
+    /* Arranca hacia Entregado */
+    66%  { left: 202px; top: 40px; transform: none; }
+    /* Llega a Entregado: top:82px para quedar DEBAJO del badge 'Completadas' */
+    80%  { left: 375px; top: 82px; transform: none; background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.4); }
+    /* Queda fija y plana en Entregado */
+    83%, 92% { left: 375px; top: 82px; transform: none; background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.45); opacity: 1; box-shadow: 0 8px 24px rgba(16,185,129,0.2); }
+    /* Desaparece */
+    97%  { opacity: 0; }
+    100% { opacity: 0; left: 375px; top: 82px; }
+}
+
+/* --- ENGRANAJE --- */
+/* .loader-gear: SOLO controla visibilidad (opacity). Sin rotate. */
+.loader-gear {
+    opacity: 0;
+    animation: gearFade 10s infinite linear;
+}
+
+/* El SVG del engranaje gira de forma independiente y continua */
+.gear-svg {
+    animation: gearSpin 2s linear infinite;
+}
+
+/* Fade del contenedor completo (gear + texto) */
+@keyframes gearFade {
+    0%, 39%  { opacity: 0; }
+    41%      { opacity: 1; }
+    45%, 61% { opacity: 1; }
+    64%      { opacity: 0; }
+    100%     { opacity: 0; }
+}
+
+/* Rotación solo del SVG — no afecta al texto hermano */
+@keyframes gearSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* --- CONTADOR --- */
+.counter-val::after {
+    content: "12";
+    animation: countUp 10s infinite step-end;
+}
+
+@keyframes countUp {
+    0%, 81%  { content: "12"; color: #10b981; }
+    82%, 95% { content: "13"; color: #34d399; }
+    96%, 100%{ content: "12"; color: #10b981; }
+}
+
+/* Animación "pulse" para el texto "Automatizando..." */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+}
+
+/* =======================================================
+   MOBILE — CSS Scroll-Snap Nativo + Layout Optimizado
+   ======================================================= */
+@media (max-width: 1024px) {
+
+    /* ── SISTEMA DE SCROLL ───────────────────────────────── */
+    html, body {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    body {
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        -webkit-overflow-scrolling: touch;
+        overflow-x: hidden;
+    }
+
+    .snap-container {
+        height: auto;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .snap-section {
+        height: 100svh;
+        min-height: 100svh;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        overflow: hidden;
+        box-sizing: border-box;
+        /* Padding: arriba para la navbar, abajo para respiro */
+        padding-top: 4.5rem;
+        padding-bottom: 1rem;
+        justify-content: center;
+    }
+
+    /* ── SECCIÓN 1: HERO ─────────────────────────────────── */
+    /* El texto hero cabe bien en 2 líneas a este tamaño */
+    #sistema ~ section h1,
+    .snap-section:first-of-type h1 {
+        font-size: 3.2rem !important;
+        line-height: 0.88 !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    /* Descripción del hero */
+    .snap-section:first-of-type p {
+        font-size: 0.9rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    /* Botones del hero en columna, más compactos */
+    .snap-section:first-of-type .flex.flex-col {
+        gap: 0.65rem !important;
+    }
+
+    .snap-section:first-of-type button {
+        padding: 0.9rem 2rem !important;
+        font-size: 0.9rem !important;
+        border-radius: 1rem !important;
+    }
+
+    /* Badge "Productized Automation Agency" */
+    .snap-section:first-of-type span.glass.rounded-full {
+        margin-bottom: 1rem !important;
+        font-size: 8px !important;
+    }
+
+    /* ── SECCIÓN 2: SISTEMA ──────────────────────────────── */
+    #sistema {
+        padding-top: 4.5rem !important;
+        padding-bottom: 0.5rem !important;
+    }
+
+    #sistema .max-w-7xl {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* Grid de estadísticas: 2 columnas en móvil (2×2) */
+    #sistema .grid.grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.75rem !important;
+        margin-bottom: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    /* Números de stats */
+    #sistema .text-5xl {
+        font-size: 1.75rem !important;
+        margin-bottom: 0.1rem !important;
+    }
+
+    /* Labels de stats */
+    #sistema .text-center p {
+        font-size: 7px !important;
+    }
+
+    /* Cards de proceso: columna única — excluye el grid de stats */
+    #sistema .grid:not(.grid-cols-2) {
+        grid-template-columns: 1fr !important;
+        gap: 0.6rem !important;
+    }
+
+    #sistema .glass.p-10 {
+        padding: 0.9rem 1rem !important;
+        border-radius: 1.25rem !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.75rem !important;
+    }
+
+    /* Número 01/02/03 */
+    #sistema .w-14.h-14 {
+        width: 2.25rem !important;
+        height: 2.25rem !important;
+        min-width: 2.25rem !important;
+        border-radius: 0.75rem !important;
+        margin-bottom: 0 !important;
+        font-size: 0.75rem !important;
+    }
+
+    /* Texto de las cards de sistema */
+    #sistema h3 {
+        font-size: 0.85rem !important;
+        margin-bottom: 0.15rem !important;
+    }
+
+    #sistema p.text-sm {
+        font-size: 0.7rem !important;
+        line-height: 1.3 !important;
+    }
+
+    /* ── SECCIÓN 3: PRICING (sin Trello) ─────────────────── */
+
+    /* OCULTAR el simulador Trello en móvil */
+    #trello-board,
+    .snap-section .order-1 {
+        display: none !important;
+    }
+
+    /* La pricing card ocupa todo el ancho */
+    .snap-section .grid.lg\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* La pricing card: padding reducido */
+    .snap-section .glass.p-10 {
+        padding: 1.25rem 1rem !important;
+        border-radius: 1.75rem !important;
+    }
+
+    /* Precio grande */
+    .snap-section .text-7xl {
+        font-size: 3rem !important;
+        margin-bottom: 0.15rem !important;
+    }
+
+    /* Subtítulo bajo el precio */
+    .snap-section .text-gray-400.mb-10 {
+        margin-bottom: 0.5rem !important;
+        font-size: 0.75rem !important;
+    }
+
+    /* Grid de features 1 columna */
+    .snap-section .grid.grid-cols-1 {
+        grid-template-columns: 1fr !important;
+        gap: 0.35rem !important;
+        margin-bottom: 0.75rem !important;
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+    }
+
+    /* Texto de features */
+    .snap-section .flex.items-center.gap-3.italic {
+        font-size: 0.78rem !important;
+        gap: 0.4rem !important;
+    }
+
+    /* Botón CTA */
+    .snap-section a.block.w-full {
+        padding: 0.9rem !important;
+        font-size: 1rem !important;
+        border-radius: 1rem !important;
+    }
+
+    /* Label "Plan Async Pro" centrado */
+    .snap-section .absolute.top-0.right-10 {
+        right: 50%;
+        transform: translateX(50%);
+        font-size: 8px !important;
+        padding: 0.2rem 0.75rem !important;
+    }
+
+    /* ── SECCIÓN 4: FAQ ──────────────────────────────────── */
+    .snap-section h2 {
+        font-size: 1.75rem !important;
+        margin-bottom: 0.85rem !important;
+    }
+
+    .snap-section .space-y-6 {
+        gap: 0.6rem !important;
+    }
+
+    .snap-section .glass.p-8 {
+        padding: 0.85rem 1rem !important;
+        border-radius: 1rem !important;
+    }
+
+    .snap-section h4.text-lg {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.3rem !important;
+    }
+
+    .snap-section p.text-sm.leading-relaxed {
+        font-size: 0.72rem !important;
+        line-height: 1.4 !important;
+    }
+}
+
+/* ── Pantallas muy pequeñas (iPhone SE < 380px) ───────── */
+@media (max-width: 380px) {
+    .snap-section:first-of-type h1,
+    #sistema ~ section h1 {
+        font-size: 2.6rem !important;
+    }
+
+    .snap-section .text-7xl {
+        font-size: 2.4rem !important;
+    }
+
+    #sistema .text-5xl {
+        font-size: 1.5rem !important;
+    }
+}

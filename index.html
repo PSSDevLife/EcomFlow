@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowless Ecom | Agencia de Automatización Asíncrona</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="selection:bg-indigo-500 selection:text-white">
+
+    <nav class="fixed top-0 left-0 w-full z-[100] border-b border-white/10 bg-black/80 backdrop-blur-lg h-16 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex items-center justify-between">
+            <div class="text-xl font-black tracking-tighter text-white italic leading-none">FLOWLESS<span class="text-indigo-500 font-black">ECOM</span></div>
+            <button onclick="goToSection(3)" class="bg-indigo-600 text-white px-6 py-2 rounded-full text-xs font-black hover:bg-white hover:text-black transition-all">SUSCRIBIRSE</button>
+        </div>
+    </nav>
+
+    <div class="hidden md:flex fixed left-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-6" id="nav-dots-container">
+        <div class="dot w-1 h-6 rounded-full bg-indigo-500 transition-all duration-500 cursor-pointer" onclick="goToSection(0)"></div>
+        <div class="dot w-1 h-6 rounded-full bg-white/10 transition-all duration-500 cursor-pointer" onclick="goToSection(1)"></div>
+        <div class="dot w-1 h-6 rounded-full bg-white/10 transition-all duration-500 cursor-pointer" onclick="goToSection(2)"></div>
+        <div class="dot w-1 h-6 rounded-full bg-white/10 transition-all duration-500 cursor-pointer" onclick="goToSection(3)"></div>
+    </div>
+
+    <div class="snap-container" id="mainContainer">
+
+        <!-- Seccion 1: Hero -->
+        <section class="snap-section bg-gradient-to-b from-indigo-950/20 to-black">
+            <div class="max-w-5xl text-center px-4">
+                <span class="px-4 py-1.5 text-[10px] font-black tracking-[0.3em] text-indigo-400 uppercase glass rounded-full mb-8 inline-block">Productized Automation Agency</span>
+                <h1 class="text-6xl md:text-9xl font-black text-white tracking-tighter leading-[0.85] mb-10">
+                    Tu Shopify en <br><span class="gradient-text">Piloto Automático.</span>
+                </h1>
+                <p class="text-lg md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed mb-12 font-medium">
+                    Escalamos tu tienda eliminando el trabajo manual. <br class="hidden md:block">
+                    Sin llamadas, sin nóminas, gestión 100% asíncrona.
+                </p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                    <button onclick="goToSection(1)" class="bg-white text-black px-10 py-5 rounded-2xl font-black text-lg hover:bg-indigo-500 hover:text-white transition-all shadow-2xl shadow-indigo-500/10 uppercase tracking-tighter">Ver El Sistema</button>
+                    <button onclick="goToSection(2)" class="glass text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-white/5 transition-all uppercase tracking-tighter">Plan y Precio</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seccion 2: Sistema -->
+        <section id="sistema" class="snap-section bg-black border-y border-white/5">
+            <div class="max-w-7xl w-full px-6 py-12">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-24 border-b border-white/5 pb-16 mt-8">
+                    <div class="text-center">
+                        <div class="text-5xl font-black text-white tracking-tighter mb-2 italic">48h</div>
+                        <p class="text-[10px] uppercase font-bold tracking-widest text-indigo-500">Entrega Media</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl font-black text-white tracking-tighter mb-2 italic">0</div>
+                        <p class="text-[10px] uppercase font-bold tracking-widest text-indigo-500">Zooms al mes</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl font-black text-white tracking-tighter mb-2 italic">∞</div>
+                        <p class="text-[10px] uppercase font-bold tracking-widest text-indigo-500">Peticiones Libres</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl font-black text-white tracking-tighter mb-2 italic">100%</div>
+                        <p class="text-[10px] uppercase font-bold tracking-widest text-indigo-500">Asíncrono</p>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-12">
+                    <div class="glass p-10 rounded-[2.5rem] card-hover relative overflow-hidden">
+                        <div class="w-14 h-14 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-8 text-indigo-400 text-2xl font-black italic">01</div>
+                        <h3 class="text-2xl font-black text-white mb-4 uppercase italic">Activa</h3>
+                        <p class="text-gray-400 leading-relaxed text-sm font-medium">Suscríbete y recibe acceso a tu tablero privado de Trello en minutos. Sin permanencia.</p>
+                    </div>
+                    <div class="glass p-10 rounded-[2.5rem] card-hover relative overflow-hidden border-indigo-500/30">
+                        <div class="w-14 h-14 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-8 text-indigo-400 text-2xl font-black italic">02</div>
+                        <h3 class="text-2xl font-black text-white mb-4 uppercase italic">Solicita</h3>
+                        <p class="text-gray-400 leading-relaxed text-sm font-medium">Añade tareas ilimitadas. Desde sincronizar Sheets hasta flujos de IA. Priorizamos tu top 1.</p>
+                    </div>
+                    <div class="glass p-10 rounded-[2.5rem] card-hover relative overflow-hidden">
+                        <div class="w-14 h-14 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-8 text-indigo-400 text-2xl font-black italic">03</div>
+                        <h3 class="text-2xl font-black text-white mb-4 uppercase italic">Escala</h3>
+                        <p class="text-gray-400 leading-relaxed text-sm font-medium">Recibe tu flujo configurado en 48h. Testeado, documentado en Loom y listo para producir.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seccion 3: Pricing & Animation -->
+        <section class="snap-section bg-gradient-to-b from-black to-indigo-950/20">
+            <div class="max-w-7xl w-full grid lg:grid-cols-2 gap-16 items-center px-6 py-12">
+                
+                <div class="glass p-10 md:p-14 rounded-[3.5rem] border-2 border-indigo-600 shadow-2xl shadow-indigo-500/20 relative order-2 lg:order-1 transition-transform hover:scale-[1.02] duration-500">
+                    <div class="absolute top-0 right-10 bg-indigo-600 text-white px-6 py-2 rounded-b-2xl text-[10px] font-black uppercase tracking-widest shadow-lg">Plan Async Pro</div>
+                    <div class="text-7xl font-black text-white mb-2 italic tracking-tighter leading-none"><span id="precio-suscripcion"></span><span class="text-xl text-gray-500 font-normal ml-2 not-italic">/ mes</span></div>
+                    <p class="text-gray-400 mb-10 font-medium italic uppercase tracking-tighter">Tu experto en la sombra.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-8 mb-12 text-sm font-bold border-y border-white/5 py-8">
+                        <div class="flex items-center gap-3 italic">✅ Solicitud activa individual</div>
+                        <div class="flex items-center gap-3 italic">✅ Tareas ilimitadas en cola</div>
+                        <div class="flex items-center gap-3 italic">✅ Make.com + AI + Shopify</div>
+                        <div class="flex items-center gap-3 italic">✅ Soporte Trello/Loom</div>
+                        <div class="flex items-center gap-3 italic">✅ Pausa en cualquier momento</div>
+                        <div class="flex items-center gap-3 italic">✅ Sin contratos ni Zooms</div>
+                    </div>
+                    
+                    <a href="https://trello.com" class="block w-full bg-white text-black py-6 rounded-2xl font-black text-xl md:text-2xl hover:bg-indigo-500 hover:text-white transition-all text-center uppercase tracking-tighter leading-none">Contratar Suscripción</a>
+                </div>
+
+                <div class="w-full order-1 lg:order-2 flex flex-col items-center">
+                    <h4 class="text-xs font-black text-indigo-400 uppercase tracking-[0.4em] mb-6 italic">Value Flow Visualization</h4>
+                    
+                    <!-- Trello Simulator: contenedor con ancho fijo para que las animaciones sean precisas -->
+                    <div id="trello-board" class="trello-sim glass relative" style="width:100%; max-width:560px; height:300px;">
+                        
+                        <!-- Cursor animado -->
+                        <div id="cursor">
+                            <svg viewBox="0 0 24 24" fill="white" style="width:100%;height:100%;filter:drop-shadow(0 0 8px rgba(255,255,255,0.6))"><path d="M7 2l12 11.2-5.8.8 3.3 6.1-2.2 1.2-3.4-6.2-3.9 3.9z"/></svg>
+                        </div>
+
+                        <!-- Tarjeta animada (vuela sobre las columnas) -->
+                        <div id="task-card-fly" class="task-card-fly">
+                            <div style="width:8px;height:3px;background:rgba(255,255,255,0.3);border-radius:99px;margin-bottom:6px;"></div>
+                            <p style="font-size:8px;font-weight:900;color:white;text-transform:uppercase;font-style:italic;line-height:1.1;margin:0;">Sync Shopify → Sheets</p>
+                        </div>
+
+                        <!-- Las 3 columnas (estáticas, solo decorativas) -->
+                        <div style="display:flex;gap:10px;height:100%;box-sizing:border-box;">
+                            
+                            <!-- Columna Backlog -->
+                            <div class="trello-col" style="background:rgba(255,255,255,0.02);">
+                                <p class="col-label" style="color:#4b5563;">Backlog</p>
+                                <!-- Tarjeta estática "fantasma" visible solo al inicio antes de que fly aparezca -->
+                                <div id="task-ghost" style="background:#4f46e5;padding:10px;border-radius:8px;border:1px solid rgba(99,102,241,0.5);margin-top:4px;">
+                                    <div style="width:16px;height:3px;background:rgba(255,255,255,0.3);border-radius:99px;margin-bottom:6px;"></div>
+                                    <p style="font-size:8px;font-weight:900;color:white;text-transform:uppercase;font-style:italic;line-height:1.1;margin:0;">Sync Shopify → Sheets</p>
+                                </div>
+                                <div style="height:36px;background:rgba(255,255,255,0.04);border-radius:8px;margin-top:8px;"></div>
+                                <div style="height:28px;background:rgba(255,255,255,0.02);border-radius:8px;margin-top:6px;"></div>
+                            </div>
+
+                            <!-- Columna Haciendo -->
+                            <div class="trello-col" style="background:rgba(79,70,229,0.03);border:1px solid rgba(99,102,241,0.12);">
+                                <p class="col-label" style="color:#6366f1;font-style:italic;">Haciendo</p>
+                                <!-- Engranaje: wrapper controla visibilidad, SVG gira solo -->
+                                <div class="loader-gear" style="margin-top:56px;display:flex;flex-direction:column;align-items:center;gap:6px;">
+                                    <svg class="gear-svg" style="width:26px;height:26px;color:#6366f1;flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    <span style="font-size:7px;font-weight:900;color:#6366f1;text-transform:uppercase;letter-spacing:.04em;font-style:normal;transform:none;display:block;animation:pulse 1.5s ease-in-out infinite;">Automatizando...</span>
+                                </div>
+                            </div>
+
+                            <!-- Columna Entregado -->
+                            <div class="trello-col" style="background:rgba(255,255,255,0.02);">
+                                <p class="col-label" style="color:#4b5563;">Entregado</p>
+                                <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;margin-top:4px;">
+                                    <span style="font-size:8px;font-weight:900;color:#10b981;text-transform:uppercase;">Completadas</span>
+                                    <span class="counter-val" style="font-size:10px;font-weight:900;color:#10b981;font-style:italic;"></span>
+                                </div>
+                                <div style="height:28px;background:rgba(255,255,255,0.04);border-radius:8px;margin-top:8px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seccion 4: FAQ -->
+        <section class="snap-section bg-black">
+            <div class="max-w-4xl w-full px-6 py-12 relative overflow-hidden flex flex-col justify-center h-full">
+                <h2 class="text-5xl font-black text-white mb-16 text-center italic tracking-tighter uppercase leading-none">Dudas Operativas</h2>
+                <div class="space-y-6 max-w-3xl mx-auto w-full">
+                    <div class="glass p-8 rounded-[2rem] hover:border-indigo-500/40 border-white/5 hover:bg-white/5 transition-all cursor-pointer">
+                        <h4 class="text-lg font-black text-white mb-3 uppercase italic leading-none">¿Por qué este modelo asíncrono?</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed font-medium">
+                            Las reuniones consumen el tiempo que deberíamos dedicar a construir. Al usar Trello y Loom, ganamos una velocidad de entrega imposible para las agencias tradicionales. Documentamos todo, ahorramos tiempo y entregamos calidad sin fricción.
+                        </p>
+                    </div>
+                    <div class="glass p-8 rounded-[2rem] border-white/5 hover:border-indigo-500/40 hover:bg-white/5 transition-all cursor-pointer">
+                        <h4 class="text-lg font-black text-white mb-3 uppercase italic leading-none">¿Qué es una Solicitud Activa?</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed font-medium">
+                            Es nuestra garantía de foco. Puedes poner 50 tareas en cola, pero trabajaremos al 100% en la que tú elijas como prioridad. Una vez entregada y validada, pasamos inmediatamente a la siguiente. Sin distracciones.
+                        </p>
+                    </div>
+                    <div class="glass p-8 rounded-[2rem] border-white/5 hover:border-indigo-500/40 hover:bg-white/5 transition-all cursor-pointer">
+                        <h4 class="text-lg font-black text-white mb-3 uppercase italic leading-none">¿Y si no tengo tareas un mes?</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed font-medium">
+                            Pausas tu suscripción con un clic y reactivas cuando la necesites. Pagas por el valor real, no por una nómina fija que no produce.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
