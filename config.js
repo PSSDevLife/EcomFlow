@@ -1,7 +1,6 @@
 // ============================================================
 //  FLOWLESS ECOM — CONFIGURACIÓN CENTRAL
-//  ¿Quieres cambiar el precio? Solo edita el número de abajo.
-//  El resto de la página se actualiza automáticamente.
+//  Edita los valores aquí. La página se actualiza sola.
 // ============================================================
 
 const CONFIG = {
@@ -13,4 +12,7 @@ const CONFIG = {
 
     // Periodo de facturación (texto que aparece junto al precio)
     PERIODO: "/ mes",
+
+    // ⭐ Link de pago — Actualiza este enlace cuando cambies de plan en Stripe
+    PAYMENT_URL: "https://buy.stripe.com/5kQ28rcfbcfg5rQ6vJ87K01",
 };

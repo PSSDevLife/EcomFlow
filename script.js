@@ -96,5 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const precioFormateado = CONFIG.PRECIO_SUSCRIPCION.toLocaleString('es-ES');
             precioEl.textContent = `${precioFormateado}${CONFIG.MONEDA_SIMBOLO}`;
         }
+
+        // Inyección del link de pago en ambos botones
+        if (CONFIG.PAYMENT_URL) {
+            ['btn-nav-pago', 'btn-cta-pago'].forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn) btn.href = CONFIG.PAYMENT_URL;
+            });
+        }
     }
 });
