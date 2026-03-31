@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Bienvenido a Flowless Ecom! | Pago Confirmado</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 900px;
+            height: 900px;
+            background: radial-gradient(circle, rgba(99,102,241,0.18) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            animation: pulse-bg 4s ease-in-out infinite;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(16,185,129,0.08) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+        }
+
+        @keyframes pulse-bg {
+            0%, 100% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+            50%       { opacity: 1;   transform: translateX(-50%) scale(1.08); }
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .card {
+            position: relative;
+            z-index: 10;
+            max-width: 560px;
+            width: 100%;
+            padding: 0 1.5rem;
+        }
+
+        .check-wrapper {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(16,185,129,0.1);
+            border: 2px solid rgba(16,185,129,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2.5rem;
+            animation: pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        .check-wrapper svg {
+            width: 48px;
+            height: 48px;
+            color: #10b981;
+            animation: draw-check 0.5s ease 0.3s both;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+        }
+
+        @keyframes pop-in {
+            0%   { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes draw-check {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .heading {
+            font-size: clamp(2.5rem, 6vw, 3.75rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            text-align: center;
+            font-style: italic;
+            animation: fade-up 0.7s ease 0.2s both;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            animation: fade-up 0.7s ease 0.5s both;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            border-radius: 1.25rem;
+        }
+
+        .step-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            min-width: 2.5rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .step-icon.green  { background: rgba(16,185,129,0.1);  }
+        .step-icon.indigo { background: rgba(99,102,241,0.1);  }
+        .step-icon.white  { background: rgba(255,255,255,0.05);}
+
+        .step-title {
+            font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-style: italic;
+            margin-bottom: 0.15rem;
+        }
+
+        .step-desc {
+            font-size: 0.78rem;
+            color: #9ca3af;
+            line-height: 1.45;
+            font-weight: 500;
+        }
+
+        .btn-back {
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            padding: 1.1rem 2rem;
+            border-radius: 1.25rem;
+            font-weight: 900;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #fff;
+            transition: background 0.25s, border-color 0.25s, transform 0.2s;
+            animation: fade-up 0.7s ease 0.7s both;
+        }
+
+        .btn-back:hover {
+            background: rgba(99,102,241,0.15);
+            border-color: rgba(99,102,241,0.5);
+            transform: translateY(-2px);
+        }
+
+        .logo {
+            position: fixed;
+            top: 1.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.1rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            font-style: italic;
+            color: #fff;
+            z-index: 100;
+            text-decoration: none;
+        }
+
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0);    }
+        }
+
+        .fade-group-1 { animation: fade-up 0.7s ease 0.1s both; }
+        .fade-group-2 { animation: fade-up 0.7s ease 0.3s both; }
+
+        @media (max-width: 480px) {
+            .check-wrapper { width: 80px; height: 80px; margin-bottom: 1.75rem; }
+            .check-wrapper svg { width: 38px; height: 38px; }
+            .heading { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="logo">
+        FLOWLESS<span style="color:#6366f1;">ECOM</span>
+    </a>
+
+    <div class="card">
+
+        <div class="check-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        </div>
+
+        <h1 class="heading fade-group-1">
+            ¡Ya eres parte<br>
+            <span class="gradient-text">del sistema.</span>
+        </h1>
+
+        <p style="text-align:center;color:#9ca3af;font-size:0.9rem;margin-top:1rem;font-weight:500;" class="fade-group-2">
+            Tu suscripción ha sido confirmada.<br>
+            Revisa tu correo — la invitación está en camino.
+        </p>
+
+        <div class="steps">
+
+            <div class="step glass">
+                <div class="step-icon green">📧</div>
+                <div>
+                    <p class="step-title" style="color:#10b981;">Revisa tu correo</p>
+                    <p class="step-desc">
+                        Recibirás un email de confirmación en los próximos minutos.
+                        Puede tardar hasta 5 min — revisa también el spam.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step glass">
+                <div class="step-icon indigo">🗂️</div>
+                <div>
+                    <p class="step-title" style="color:#6366f1;">Invitación a Trello</p>
+                    <p class="step-desc">
+                        En ese mismo correo encontrarás el enlace para acceder
+                        a tu tablero privado de Trello. Ahí gestionaremos todas tus tareas.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step glass">
+                <div class="step-icon white">⚡</div>
+                <div>
+                    <p class="step-title" style="color:#fff;">Empieza a solicitar</p>
+                    <p class="step-desc">
+                        Añade tu primera tarea en el tablero y nos ponemos a trabajar.
+                        Entrega media en 48h. Sin reuniones.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <a href="index.html" class="btn-back">
+            ← Volver a la página principal
+        </a>
+
+    </div>
+
+</body>
+</html>
