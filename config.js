@@ -14,5 +14,5 @@ const CONFIG = {
     PERIODO: "/ mes",
 
     // ⭐ Link de pago — Actualiza este enlace cuando cambies de plan en Stripe
-    PAYMENT_URL: "https://buy.stripe.com/test_8x2dR9cfb1AC6vUcU787K00",
+    PAYMENT_URL: "https://buy.stripe.com/test_eVq28r0wt6UW07wbQ387K02",
 };
